@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('API/Admin', 'UsersController@index');
+
+Route::delete('API/Admin/{id}','UsersController@destroy');
+Route::resource('/Admin', 'UsersController');

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\users;
+use App\Users;
 use Illuminate\Http\Request;
 use Session;
 
@@ -16,11 +16,26 @@ class UsersController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = users::paginate(25);
-
-        return view('API.users.index', compact('users'));
+        //$users = users::paginate(25);
+/**
+		$user = Users::all();
+ return response()->json(array(
+ "users" => $user));
+		 */
+       // return response()->json(Users::all());
+	   $data= Users::all();
+	   //return response()->json(['success'=>true,'data'=>$data]);
+	   //$result=Users::all();
+	   //response()->json('data'->$result);
+ return response()->json($data)->withCallback($request->input('callback'));;
+	
+	
+	
+	   //return $data;
+	     //  return Users::orderBy('id', 'asc')->get();
+		 
     }
 
     /**
@@ -42,14 +57,15 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+	//$haber=json_decode($request);
         
-        $requestData = $request->all();
+        $requestData = $request->json()->all();
         
         users::create($requestData);
 
-        Session::flash('flash_message', 'users added!');
+        //Session::flash('flash_message', 'users added!');
 
-        return redirect('API/users');
+        return $requestData;
     }
 
     /**
@@ -63,7 +79,9 @@ class UsersController extends Controller
     {
         $user = users::findOrFail($id);
 
-        return view('API.users.show', compact('user'));
+       // return view('API.users.show', compact('user'));
+		
+		return $user;
     }
 
     /**
@@ -91,14 +109,14 @@ class UsersController extends Controller
     public function update($id, Request $request)
     {
         
-        $requestData = $request->all();
+        $requestData = $request->json()->all();
         
         $user = users::findOrFail($id);
         $user->update($requestData);
 
-        Session::flash('flash_message', 'users updated!');
+       // Session::flash('flash_message', 'users updated!');
 
-        return redirect('API/users');
+        return 'funciono update';
     }
 
     /**
@@ -112,8 +130,10 @@ class UsersController extends Controller
     {
         users::destroy($id);
 
-        Session::flash('flash_message', 'users deleted!');
+     //   Session::flash('flash_message', 'users deleted!');
 
-        return redirect('API/users');
+        //return redirect('API/users');
+		
+		return 'entro';
     }
 }

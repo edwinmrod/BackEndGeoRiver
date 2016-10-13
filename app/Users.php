@@ -11,8 +11,13 @@ class Users extends Model
      *
      * @var string
      */
-    protected $table = 'Users';
+    protected $table = 'users';
+ protected $fillable = [
+        'id','firstName', 'lastName', 'userName','password','program','role'
+    ];
+	
 
+public $timestamps = false;
     /**
     * The database primary key value.
     *
@@ -25,7 +30,7 @@ class Users extends Model
      *
      * @var array
      */
-    protected $fillable = ;
+  
 
     
 }
