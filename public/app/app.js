@@ -30,8 +30,8 @@ AUapp.config( function ($stateProvider, $urlRouterProvider, $authProvider) {
 
     $urlRouterProvider.otherwise('/login');
 
-    $authProvider.loginUrl = 'http://localhost:8088/BackEndGeoRiver3.0/public/auth_login';
-    $authProvider.signupUrl = 'http://localhost:8088/BackEndGeoRiver3.0/public/api/register';
+    $authProvider.loginUrl = 'http://localhost:8088/BackEndGeoRiver/public/auth_login';
+    $authProvider.signupUrl = 'http://localhost:8088/BackEndGeoRiver/public/api/register';
 })
 AUapp.factory('UserService', function ($http) {
     return {
@@ -144,7 +144,7 @@ var dataUser = {
     };  
 
 
-    $http.post('http://localhost:8088/BackEndGeoRiver3.0/public/Admin',dataUser).success(function (data, status, headers, config)
+    $http.post('http://localhost:8088/BackEndGeoRiver/public/Admin',dataUser).success(function (data, status, headers, config)
         {
 //location.reload(true);
             // $window.location.reload();
@@ -181,7 +181,7 @@ var dataUser = {
     
 
 
-    $http.put('http://localhost:8088/BackEndGeoRiver3.0/public/Admin/'+$id,dataUser).success(function (data, status, headers, config)
+    $http.put('http://localhost:8088/BackEndGeoRiver/public/Admin/'+$id,dataUser).success(function (data, status, headers, config)
         {
 //location.reload(true);
             // $window.location.reload();
@@ -220,7 +220,7 @@ var data=$scope.id;
 
 
 
-   $http.delete('http://localhost:8088/BackEndGeoRiver3.0/public/API/Admin/'+$id)
+   $http.delete('http://localhost:8088/BackEndGeoRiver/public/API/Admin/'+$id)
        .success(function (data, status, headers, config)
         {
 //location.reload(true);
@@ -245,7 +245,7 @@ var data=$scope.id;
        
 
    
-      $http.jsonp('http://localhost:8088/BackEndGeoRiver3.0/public/API/Admin?callback=JSON_CALLBACK').success(function(data) 
+      $http.jsonp('http://localhost:8088/BackEndGeoRiver/public/API/Admin?callback=JSON_CALLBACK').success(function(data) 
     {
 
        console.log('entro: ' + data);
