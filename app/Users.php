@@ -30,7 +30,9 @@ public $timestamps = false;
      *
      * @var array
      */
-  
+      protected $hidden = [
+         'remember_token',
+    ];
 
     
 }

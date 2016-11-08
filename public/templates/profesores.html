@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html data-ng-app="userStore">
+  <head>
+    <link rel="stylesheet" type="text/css" href="bootstrap\css\bootstrap.min.css" />
+    <script type="text/javascript" src="angular.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+
+<style type="text/css">
+ 
+  .container{
+    text-align:center
+}
+.left{
+    float: left;
+   height:500px;
+   width: 150px
+}
+.right{
+    float: right;
+    
+}
+.center{
+  
+    margin:0 auto; 
+   display:inline-block
+}
+</style>
+  </head>
+
+  <body ng-controller="StoreController as store" >
+    <!--  Store Header  -->
+
+
+    
+    <header>
+      <h1 class="text-center">Administrador</h1>
+      <h2 class="text-center">Gestion de Usuarios</h2>
+    </header>
+
+    <!--  Products Container  -->
+    <div class="list-group">
+      <!--  Product Container  -->
+      <div class="list-group-item" >
+       
+
+  
+
+        <!-- Product Tabs  -->
+        <section ng-controller="TabController as tab">
+
+
+        <div class="left">
+          <ul class="nav nav-pills nav-stacked">
+            <li  ng-class="{ active:tab.isSet(1) }">
+              <a href ng-click="tab.setTab(1)">Profesores</a>
+            </li>
+            <li ng-class="{ active:tab.isSet(2) }">
+              <a href ng-click="tab.setTab(2)">Modificar</a>
+            </li>
+            <li ng-class="{ active:tab.isSet(3) }">
+              <a href ng-click="tab.setTab(3)">Crear</a>
+            </li>
+          </ul>
+
+    </div>
+          <!--  Description Tab's Content  -->
+          <div class="center" ng-show="tab.isSet(1)" >
+            <table class="table">
+            <thead>
+
+    <th>id </th>        
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Correo</th>
+    <th>password</th>
+    <th>Programa</th>
+    <th>role</th>
+    <th>Accion</th>
+     </thead>
+  <tbody >
+  <tr ng-repeat="user in users">
+
+    <td>{{user.id}}</td>
+    <td>{{user.firstName}}</td>
+    <td>{{user.lastName}}</td>
+    <td>{{user.userName}}</td>
+    <td>{{user.password}}</td>
+    <td>{{user.program}}</td>
+    <td>{{user.role}}</td>
+      <td><input ng-click="store.deleteCall(user.id)" type="submit" class="btn btn-primary pull-center" value="Eliminar"onclick="window.location.reload()"/></td>
+    </tbody>
+  </tr>
+</table>
+           
+<!--            <blockquote>{{product.description}}</blockquote>-->
+
+          </div>
+
+          <!--  Spec Tab's Content  -->
+          <div ng-show="tab.isSet(2)">
+            <h4 class="text-center">Modificar</h4>
+            
+        
+ 
+
+           <form  class="text-center" role="form" >
+                         
+<fieldset class="form-group">
+            <select ng-model="selectedUser" ng-options="user.firstName for user in users"> 
+            </select>
+
+</fieldset>
+             <fieldset class="form-group">
+              <label for="disabledTextInput">Nombre:</label>
+                <input  type="text" class="form-control" placeholder="nombre" ng-model="selectedUser.firstName"></input>
+                
+              </fieldset>
+              
+              <fieldset class="form-group">
+              <label for="disabledTextInput">Apellido:</label>
+                <input  type="text" class="form-control" placeholder="apellido" title="apellido" ng-model="selectedUser.lastName" ></input>
+              </fieldset>
+              
+              <fieldset class="form-group">
+              <label for="disabledTextInput">Correo:</label>
+                <input  type="email" class="form-control" placeholder="jimmyDean@example.org" title="Email" ng-model="selectedUser.userName" />
+            
+           
+            
+              </fieldset>
+              
+               <fieldset class="form-group">
+                <label for="disabledTextInput">Password:</label>
+                <input type="password"  class="form-control" placeholder="password" title="password" ng-model="selectedUser.password"></input>
+              </fieldset>
+              
+               <fieldset class="form-group">
+                 <label for="disabledTextInput">Programa:</label>
+                <input type="text" class="form-control" placeholder="programa" title="program" ng-model="selectedUser.program" ></input>
+              </fieldset>
+             
+          
+               <fieldset class="form-group">
+                 <label for="disabledTextInput">Tipo de usuario:</label>
+                <input type="text" class="form-control" placeholder="Tipo de usuario" title="Tuser" ng-model="selectedUser.role" ></input>
+              </fieldset>
+
+               <fieldset class="form-group">
+                <input ng-click="updateUser(selectedUser.id,selectedUser.firstName,selectedUser.lastName,selectedUser.userName,selectedUser.password,selectedUser.program,selectedUser.role)" type="submit" class="btn btn-primary pull-center" value="Modificar" />
+              </fieldset>
+            </form>
+
+             
+        
+<div ng-show="tab.isSet(4)">
+ <fieldset class="form-group">
+                <textfield> nombre:<textfield>
+                <input  class="form-control" placeholder="nombre" title="Review"></input>
+                </fieldset>
+                </div>
+            
+          </div>
+
+          <!--  Review Tab's Content  -->
+          <div ng-show="tab.isSet(3)">
+            <!--  Product Reviews List -->
+            
+
+            <!--  Review Form -->
+          
+
+              <!--  Live Preview -->
+            
+
+              <!--  Review Form -->
+              <h4>Crear usuario</h4>
+             
+              <form class="center" role="form">
+              
+              <div class="form-group">
+              <label for="disabledTextInput">Nombre:</label>
+                <input  type="text" class="form-control" placeholder="nombre" ng-model="fname"></input>
+                
+              </div>
+              
+              <fieldset class="form-group">
+              <label for="disabledTextInput">Apellido:</label>
+                <input  type="text" class="form-control" placeholder="apellido" title="apellido" ng-model="lname"></input>
+              </fieldset>
+              
+              <fieldset class="form-group">
+              <label for="disabledTextInput">Correo:</label>
+                <input  type="email" class="form-control" placeholder="jimmyDean@example.org" title="Email" ng-model="email"/>
+            
+           
+            
+              </fieldset>
+              
+               <fieldset class="form-group">
+                <label for="disabledTextInput">Password:</label>
+                <input type="password"  class="form-control" placeholder="password" title="password" ng-model="pssw"></input>
+              </fieldset>
+              
+               <fieldset class="form-group">
+                 <label for="disabledTextInput">Programa:</label>
+                <input type="text" class="form-control" placeholder="programa" title="program" ng-model="program"></input>
+              </fieldset>
+
+
+              <fieldset class="form-group">
+                 <label for="disabledTextInput">Tipo de usuario:</label>
+                <input type="text" class="form-control" placeholder="Tipo de usuario" title="Tususario" ng-model="Tuser"></input>
+              </fieldset>
+             
+              <fieldset class="form-group">
+                <input ng-click="store.addUser(fname,lname,email,pssw,program,Tuser)" type="submit" class="btn btn-primary pull-center" value="Crear" onclick="window.location.reload()"/>
+              </fieldset>
+              
+            </form>
+              
+            </form>
+          </div>
+
+        </section>
+      </div>
+
+    </div>
+  </body>
+</html>

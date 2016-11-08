@@ -4,13 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Hash;
 use App\Users;
 use Illuminate\Http\Request;
 use Session;
 
 class UsersController extends Controller
 {
+
+
+public function __construct(){
+$this->middleware('cors');
+
+
+}
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -60,6 +70,9 @@ class UsersController extends Controller
 	//$haber=json_decode($request);
         
         $requestData = $request->json()->all();
+		
+        $password=bcrypt($request->input('password'));
+        $requestData['password'] = $password;
         
         users::create($requestData);
 
@@ -108,10 +121,15 @@ class UsersController extends Controller
      */
     public function update($id, Request $request)
     {
+	
         
         $requestData = $request->json()->all();
         
+		   $password=bcrypt($request->input('password'));
+        $requestData['password'] = $password;
+		
         $user = users::findOrFail($id);
+		
         $user->update($requestData);
 
        // Session::flash('flash_message', 'users updated!');
@@ -133,7 +151,7 @@ class UsersController extends Controller
      //   Session::flash('flash_message', 'users deleted!');
 
         //return redirect('API/users');
-		
-		return 'entro';
+		$alo=Hash::make('123456');
+		return $alo;
     }
 }

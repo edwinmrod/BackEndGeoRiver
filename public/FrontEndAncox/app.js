@@ -24,7 +24,7 @@ var dataUser = {
     };  
 
 
-    $http.post('http://localhost:8088/BackEndGeoRiver/public/Admin',dataUser).success(function (data, status, headers, config)
+    $http.post('http://localhost:8088/BackEndGeoRiver2.0/public/Admin',dataUser).success(function (data, status, headers, config)
         {
 //location.reload(true);
             // $window.location.reload();
@@ -100,7 +100,7 @@ var data=$scope.id;
 
 
 
-   $http.delete('http://localhost:8088/BackEndGeoRiver/public/API/Admin/'+$id)
+   $http.delete('http://localhost:8088/BackEndGeoRiver2.0/public/API/Admin/'+$id)
        .success(function (data, status, headers, config)
         {
 //location.reload(true);
